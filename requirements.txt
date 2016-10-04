@@ -2,5 +2,6 @@ dj-static==0.0.6
 Django==1.10.2
 django-filter==0.15.2
 djangorestframework==3.4.7
+gunicorn==19.6.0
 Markdown==2.6.7
 static3==0.7.0
