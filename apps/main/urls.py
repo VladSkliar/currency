@@ -14,5 +14,5 @@ urlpatterns = [
         views.currency,
         name='currency'),
     url(r'^sequence/', views.sequence, name='sequence'),
-    url(r'^', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
 ]
