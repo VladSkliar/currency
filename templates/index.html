@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Sequnce counting</title>
+    <link rel="stylesheet" href="{% static 'css/main.css'%}">
+  </head>
+  <body>
+    <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="file-upload" data-text="Load .csv file">
+      <input type="file" name="file">
+
+      </div>
+      <p><input type="submit"></p>
+      {%if message %}
+        <h3>{{ message }}</h3>
+      {%endif%}
+    </form>
+    {%if currency%}
+      <a href="{% url 'currencies'%}">Available currency</a>
+      <a href="{% url 'sequence'%}">Available sequence</a>
+    {%endif%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </body>
+</html>

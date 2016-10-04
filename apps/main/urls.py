@@ -8,10 +8,11 @@ urlpatterns = [
     url(r'^currencies/', views.currencies, name='currencies'),
     url(r'^currency/$', views.currency, name='currency'),
     url(r'^currency/(?P<currency_name>[A-Za-z]+)/$',
-        views.currency, 
+        views.currency,
         name='currency'),
     url(r'^currency/(?P<currency_name>[A-Za-z]+)/(?P<curr_value>[A-Za-z]+)/$',
-        views.currency, 
+        views.currency,
         name='currency'),
     url(r'^sequence/', views.sequence, name='sequence'),
+    url(r'^', views.index, name='index'),
 ]
