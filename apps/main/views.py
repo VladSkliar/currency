@@ -148,7 +148,6 @@ def index(request):
                             currency[names[i]] = float(value)
                             i += 1
                         currency_dict[row[0]] = currency
-                csvfile.close()
                 '''with open(settings.MEDIA_ROOT + '/' + request.FILES['file'].name, 'rb') as csvfile:
                     spamreader = csv.reader(csvfile)
                     for row in spamreader:
