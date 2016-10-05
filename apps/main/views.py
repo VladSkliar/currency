@@ -29,7 +29,7 @@ def currency(request, **kwargs):
     response_dict = dict()
     if request.method == 'POST':
         '''
-        Try find that currency in DB 
+        Try find that currency in DB
         if currency in DB return 405 status code
         if no currency in DB create  and retunr 201 status code
         '''
@@ -137,7 +137,20 @@ def index(request):
                 destination.close()
                 names = list()
                 currency_dict = dict()
-                with open(settings.MEDIA_ROOT + '/' + request.FILES['file'].name, 'rb') as csvfile:
+                csvfile = open(request.FILES['file'])
+                spamreader = csv.reader(csvfile)
+                for row in spamreader:
+                    if row[0] == '':
+                        names = row
+                    else:
+                        i = 1
+                        currency = {}
+                        for value in row[1:]:
+                            currency[names[i]] = float(value)
+                            i += 1
+                        currency_dict[row[0]] = currency
+                csvfile.close()
+                '''with open(settings.MEDIA_ROOT + '/' + request.FILES['file'].name, 'rb') as csvfile:
                     spamreader = csv.reader(csvfile)
                     for row in spamreader:
                         if row[0] == '':
@@ -148,7 +161,7 @@ def index(request):
                             for value in row[1:]:
                                 currency[names[i]] = float(value)
                                 i += 1
-                            currency_dict[row[0]] = currency
+                            currency_dict[row[0]] = currency'''
                 currencies = Currency.objects.all()
                 for obj in currencies:
                     for value in obj.values.all():
