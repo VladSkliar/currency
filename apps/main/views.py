@@ -130,13 +130,14 @@ def index(request):
     context = {}
     if request.method == 'POST':
         if request.FILES:
-            if request.FILES['file'].name.split('.')[-1] == 'csv':
-                destination = open(settings.MEDIA_ROOT + '/' + request.FILES['file'].name, 'wb+')
-                for chunk in request.FILES['file'].chunks():
-                    destination.write(chunk)
-                destination.close()
-                names = list()
-                currency_dict = dict()
+            '''
+            Check file format
+            '''
+            if request.FILES['file'].name.endswith('.csv'):
+                '''
+                Create currency dict for save it in DB
+                '''
+                names, currency_dict = list(), dict()
                 spamreader = csv.reader(request.FILES['file'])
                 for row in spamreader:
                     if row[0] == '':
@@ -148,18 +149,6 @@ def index(request):
                             currency[names[i]] = float(value)
                             i += 1
                         currency_dict[row[0]] = currency
-                '''with open(settings.MEDIA_ROOT + '/' + request.FILES['file'].name, 'rb') as csvfile:
-                    spamreader = csv.reader(csvfile)
-                    for row in spamreader:
-                        if row[0] == '':
-                            names = row
-                        else:
-                            i = 1
-                            currency = {}
-                            for value in row[1:]:
-                                currency[names[i]] = float(value)
-                                i += 1
-                            currency_dict[row[0]] = currency'''
                 currencies = Currency.objects.all()
                 for obj in currencies:
                     for value in obj.values.all():
@@ -172,8 +161,6 @@ def index(request):
                                                                 value=value)
                         currency.values.add(c_value)
                     currency.save()
-                import os
-                os.remove(settings.MEDIA_ROOT + '/' + request.FILES['file'].name)
             else:
                 context['message'] = 'Wrong file format'
     currencies = Currency.objects.all()

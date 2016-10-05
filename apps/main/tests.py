@@ -165,7 +165,7 @@ class SequenceViewTest(TestCase):
     def test_sequence(self):
         names = list()
         currency_dict = dict()
-        with open('kurs.csv', 'rb') as csvfile:
+        with open('media/currencies.csv', 'rb') as csvfile:
             spamreader = csv.reader(csvfile)
             for row in spamreader:
                 if row[0] == '':
