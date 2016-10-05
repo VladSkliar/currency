@@ -51,7 +51,7 @@ def count_sequences(g_currency, result_dict, n):
         '''
         count_sequences(g_currency, result_dict, n)
     else:
-        if n > 1:
+        if n >= 1:
             '''
             If count of step greter than 1 add new sequnce in  result dict
             '''
