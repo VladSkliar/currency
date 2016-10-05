@@ -137,8 +137,7 @@ def index(request):
                 destination.close()
                 names = list()
                 currency_dict = dict()
-                csvfile = open(request.FILES['file'])
-                spamreader = csv.reader(csvfile)
+                spamreader = csv.reader(request.FILES['file'])
                 for row in spamreader:
                     if row[0] == '':
                         names = row
