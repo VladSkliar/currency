@@ -1,7 +1,7 @@
 # Currency
 
 Technology:
-Django/Django Rest Framework
+Django/Django Rest Framework,
 SQLLite3(PostgreSQL on deploy)
 
 ### Installation
