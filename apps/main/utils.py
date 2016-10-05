@@ -66,28 +66,18 @@ def count_sequences(g_currency, result_dict, n):
                             new_value = v*iter_value
                             result_dict[new_name] = new_value
                 if len(k.split(',')) < 3:
+                    '''
+                    Remove sequence with only 2 currency
+                    '''
                     result_dict.pop(k, False)
             n -= 1
             count_sequences(g_currency, result_dict, n)
         elif n == 0:
+            '''
+            If count of step 0
+            remove all sequence where start and end sequence is not match
+            '''
             check_dict = result_dict.copy()
             for k, v in check_dict.iteritems():
                 if k.split(',')[0] != k.split(',')[-1]:
                     result_dict.pop(k, False)
-        '''            
-        elif n == 1:
-            check_dict = result_dict.copy()
-            for k, v in check_dict.iteritems():
-                key = k.split(',')[-1]
-                if key != k.split(',')[0]:
-                    value = g_currency[key]
-                    for iter_key, iter_value in value.iteritems():
-                        if key != iter_key:
-                            new_name = k + ',' + iter_key
-                            new_value = v*iter_value
-                            result_dict[new_name] = new_value
-                if len(k.split(',')) < 3:
-                    result_dict.pop(k, False)
-            n -= 1
-            count_sequences(g_currency, result_dict, n)
-        '''

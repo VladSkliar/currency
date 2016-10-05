@@ -13,5 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "currency.settings")
 
-application = Cling(get_wsgi_application())
-# application = get_wsgi_application()
+application = get_wsgi_application()
+
+# Deploy heroku config
+# application = Cling(get_wsgi_application())

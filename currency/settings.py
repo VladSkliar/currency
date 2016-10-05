@@ -78,7 +78,8 @@ WSGI_APPLICATION = 'currency.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+# Deploy database config
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -89,6 +90,17 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+DATABASES['default'] = dj_database_url.config()
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
 
 
 # Password validation
@@ -140,8 +152,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-DATABASES['default'] = dj_database_url.config()
 
 ALLOWED_HOSTS = ['curr.herokuapp.com']
 

@@ -117,10 +117,8 @@ def sequence(request):
                     response_dict["sequence"] = key.split(',')
                     response_dict["profit_percent"] = value
             elif value > response_dict["profit_percent"]:
-                print value, key
                 response_dict["sequence"] = key.split(',')
                 response_dict["profit_percent"] = value
-                print response_dict
     else:
         response_dict['Alert'] = u'No currencies in db'
     return Response(response_dict)
